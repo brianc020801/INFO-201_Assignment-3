@@ -93,7 +93,7 @@ plot_time_v_incarceration <- function(){
   
   ggplot(plot_df, aes(x = year, y = total_pop, colour = race)) +
     geom_line(size = 2) +
-    labs(y = "Total Pop (millions of people)", x = "Year", title = "Year (1990 - 2018) vs Incaceration (Different Races)") + 
+    labs(y = "Total Pop (millions of people)", x = "Year", title = "Year (1990 - 2018) vs Incarceration (Different Races)") + 
     scale_x_continuous(breaks = scales::pretty_breaks(n = 10)) +
     scale_y_continuous(breaks = scales::pretty_breaks(n = 10))
 }
