@@ -13,6 +13,36 @@ knitr::opts_chunk$set(echo = TRUE)
 library("knitr")
 source("analysis.R")
 ```
+  
+#### **Introduction**
+For this report, I am going to be analyzing a dataset from *Vera Institute of Justice* about incarceration in the US. This dataset has incarceration data stemming from 1970 to 2018, and includes details on the population of the incarcerated by different races: Black, White, Native Americans, Asian Americans & Pacific Islanders, and Latinx.  
+
+The 5 variables I am going to analyze are:  
+
+* Which state incarcerated the most white people (Age 15-64) in 2018
+  + To find out which state incarcerated the most percentage of white people and if it makes sense    logically
+  + **`r state_most_percentage_white_2018`**
+  
+* Which year did the US incarcerate the least percentage of black people (Age 15-64) that is not 0 
+  + To find out if the US incarceration of Black people is steadily growing or following some other   trend
+  + **`r year_least_percentage_black_people`**
+  
+* Which state had the most change of incarcerated Latinx people (Age 15-64) between 1990 to 2018  
+  + To find out which state incarcerated the most Latinx people since the US began tracking           incarceration by race to see if geographically it makes sense.
+  + **`r state_most_latina_change`**
+  
+* Which year and change in California did the least change occur in the population of Native Americans (Age 15-64)  
+  + To find out which year in California had the least change in the incarceration of Native          Americans in order to see if incarceration of Native Americans was decreasing or increasing as      time progresses.
+  + **`r year_state_least_native_change` incarceration**
+
+* What is the percent change of percentage of incarcerations of AAPI in 1990 compared to 2018
+  + To find how much the percentage of incarcerations of AAPI have increased since 1990
+  + **`r average_value_appi_over_years`%**
+  
+#### **Summary**
+In my analyzation of the dataset, I found that the state that incarcerated the most percentage of white people from the ages 15 to 64 in the most recent year (2018), was **`r state_most_percentage_white_2018`**, which wasn't suprising due to its state population. The year that the US incarcerated the least percentage of black people was **`r year_least_percentage_black_people`**, which was logical because that was when the US began recording incarceration based on race, which also means incarceration of black people have also only been growing. **`r state_most_latina_change`** was also the state with most change of incarcerated latinx people, which makes sense geographically because California is close to Central America, which could mean a lot of latinx people move there. **2018** was the year California had the least change in incarceration of Native Americans with **-1750 incarcerations** which means that incarcerations of Native Americans in 2018 was less than that of 2018, which shows that incarcerations of Native Americans could be decreasing in California. The percent change of  incarcerations of AAPI is **`r average_value_appi_over_years`%** which shows that it was double the percentage from when the US started recording incarcerations, which means that throughout the years, the incarcerations of Asian Americans and Pacific Islanders have increased in the US.
+
+#### **Plots**
 
 ```{r echo = FALSE}
 plot_time_v_incarceration()

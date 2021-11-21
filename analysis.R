@@ -6,13 +6,13 @@ incarceration_df <- read.csv("incarceration_trends.csv")
 
 incarceration_df[is.na(incarceration_df)] = 0
 
-#Which state incarcerated the most percentage of white people (15-64) in 2018
+#Which state incarcerated the most white people (15-64) in 2018
 
 state_most_percentage_white_2018 <- incarceration_df %>% 
   filter(year == 2018) %>% 
   group_by(state) %>% 
-  summarise(total_white_pop_percentage = sum(white_pop_15to64)/sum(total_pop_15to64) * 100) %>%
-  filter(total_white_pop_percentage == max(total_white_pop_percentage)) %>%
+  summarise(total_white_pop = sum(white_pop_15to64)) %>%
+  filter(total_white_pop == max(total_white_pop)) %>%
   pull(state)
 
 #Which year did the US incarcerate the least percentage of black people (15-64) not 0
@@ -27,7 +27,7 @@ year_least_percentage_black_people <- incarceration_df %>%
 #Which state had the most change of Latina people (15-64) between 1970 to 2018
 
 state_most_latina_change <- incarceration_df %>%
-  filter(year == 2018 | year == 1970) %>%
+  filter(year == 2018 | year == 1990) %>%
   group_by(state, year) %>% 
   summarise(.groups = "drop", total_latina = sum(latinx_pop_15to64)) %>%
   group_by(state) %>% 
@@ -37,22 +37,23 @@ state_most_latina_change <- incarceration_df %>%
 
 #Which year in California did the least change occur in the population of Native Americans (15-64)
 
-year_state_most_native_change <- incarceration_df %>%
+year_state_least_native_change <- incarceration_df %>%
   filter(state == "CA") %>%
   group_by(year) %>% 
   summarise(total_native = sum(native_pop_15to64)) %>% 
   mutate(changes = total_native - lag(total_native, 1)) %>%
   filter(changes == min(na.omit(changes))) %>%
-  pull(year)
+  select(year, changes)
 
-#What is the average value of incarcerations of AAPI over the years from when they first started gathering data
+#What is the percent change of percentage of incarcerations of AAPI in 1990 compared to 2018
 
 average_value_appi_over_years <- incarceration_df %>% 
+  filter(year == 2018 | year == 1990) %>%
   group_by(year) %>% 
-  summarise(total_aapi = sum(aapi_pop_15to64)) %>%
-  filter(total_aapi > 0) %>% 
-  summarise(avg = mean(total_aapi)) %>% 
-  pull(avg)
+  summarise(percentage = sum(aapi_pop_15to64) / sum(total_pop_15to64)) %>% 
+  summarise(percent_change = max(percentage) / min(percentage) * 100) %>% 
+  pull(percent_change)
+  
 
 #creates a line plot for population of different races over time (1990 to 2018)
 
