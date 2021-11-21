@@ -1,0 +1,33 @@
+---
+title: "Incarceration"
+author: "Brian Chien"
+date: "11/21/2021"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include = FALSE}
+library("knitr")
+source("analysis.R")
+```
+
+```{r echo = FALSE}
+plot_time_v_incarceration()
+```  
+
+This plot was added to show the relationship between the population of the different races incarcerated as time progresses from 1990 to 2018. Some trends we see is that white people tends to be incarcerated more than the rest of the races, then followed by black people, latinx people, Asian Americans and Pacific Islanders, then Native Americans. Until around 2000, when latinx people got incarcerated more than black people.  
+
+```{r echo = FALSE}
+plot_scatter_total_pop_v_total_pop_15_64()
+```  
+  
+This plot was added to show the relationship between the total population of the incarcerated and the total population of the incarcerated age 15 to 64. The trends we saw was as expected, which was as the total number of people that was incarcerated grew, the total population of the incarcerated betweena age 15 and 64 grew as well.  
+
+```{r echo = FALSE}
+us_map_plot()
+```
+  
+This plot was added to show the relationship between the states and their total population of the incarcerated. From the map, we can see that California has the most incarcerated out of the 50 states + DC, and that states that are more rural, such as Alaska and the mid-US have less incarcerated population. On the other hand, states that have bigger and more developed city with a higher population, such as Texas, Florida, New York, tends to have more people incarcerated.  
